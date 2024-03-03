@@ -1,0 +1,74 @@
+def is_prime(n):
+    for i in range(2,n):
+        if (n%i) == 0:
+            return False
+        return True
+def primeChecker():
+    print("Prime number checker\n")
+    num = int(input("Please enter a number between 1 and 5000: \n"))
+    while num < 1 or num > 5000:
+        num = int(input("Invalid input. Please enter a number between 1 and 5000: \n"))
+    if is_prime(num):
+        print(str(num) + " is prime.")
+    elif not is_prime(num):
+        print(str(num) + " is NOT prime. Factors: \n")
+        for x in range(1, num+1):
+            if num % x == 0:
+                print(x)
+    rerun = "yes"
+
+    while rerun == "yes":
+        primeChecker()
+        rerun = str.lower(input("Would you like to run the primechecker again? yes/no: \n"))
+        while rerun != "yes" and rerun != "no":
+            rerun = str.lower(input("Invalid input. Would you like to run the program again? yes/no: \n"))
+
+def contactManager():
+    print("Welcome to your contact manager. ")
+    rerun = True
+    contactlist = []
+    while rerun:
+        print("COMMAND MENU:\nlist - Display all contacts\nview - View a contact\n"
+              "add - Add a contact\ndel - Delete a contact\nexit - Exit program")
+        command = "random"
+        while command != "list" and command != "view" and command != "add" and command != "del" and command != "exit":
+            command = input("Command: ")
+        if command == "list":
+            for x in range(0, len(contactlist)):
+                print(str(x+1) + ". " + contactlist[x])
+
+        if command == "view":
+            viewnum = int(input("Enter a contact number to view: ")) - 1
+            print(contactlist[viewnum][:])
+
+        if command == "add":
+            name = input("Contact name: ")
+            name = []
+            name.append(name)
+            name.append(input("Contact email: "))
+            name.append(input("Contact phone#: "))
+            contactlist.append(name)
+
+        if command == "del":
+            for x in range(0, len(contactlist)):
+                print(str(x+1) + ". " + contactlist[x][1])
+            delnum = int(input("Which contact would you like to delete? List the number: "))
+            contactlist.remove(str(delnum - 1))
+            for n in range(delnum,len(contactlist)):
+                pass
+
+        if command == "exit":
+            rerun = False
+
+stop = False
+while not stop:
+    print("Welcome to Handson 4. ")
+    run = "random"
+    while(run != "primechecker" and run != "contact manager" and run != "stop"):
+        run = input("Would you like to run primechecker, contact manager, or stop? ")
+        if run == "primechecker":
+            primeChecker()
+        elif run == "contact manager":
+            contactManager()
+        elif run == "stop":
+            stop = True
